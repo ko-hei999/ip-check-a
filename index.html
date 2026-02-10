@@ -2,17 +2,22 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>IP Check A</title>
+  <title>IP Check B</title>
 </head>
 <body>
-  <h2>送信元IP（Site A）</h2>
-  <pre id="ip">取得中...</pre>
+  <h2>送信元IP（Site B）</h2>
+  <pre id="info">取得中...</pre>
 
   <script>
-    fetch("https://api.ipify.org?format=json")
+    fetch("https://ipinfo.io/json")
       .then(r => r.json())
-      .then(d => document.getElementById("ip").textContent = d.ip)
-      .catch(() => document.getElementById("ip").textContent = "取得失敗");
+      .then(d => {
+        document.getElementById("info").textContent =
+          "IP: " + d.ip + "\n" +
+          "ASN: " + (d.org || "") + "\n" +
+          "国: " + d.country;
+      })
+      .catch(() => document.getElementById("info").textContent = "取得失敗");
   </script>
 </body>
 </html>
