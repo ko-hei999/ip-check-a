@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>IP Check A</title>
+</head>
+<body>
+  <h2>送信元IP（Site A）</h2>
+  <pre id="ip">取得中...</pre>
+
+  <script>
+    fetch("https://api.ipify.org?format=json")
+      .then(r => r.json())
+      .then(d => document.getElementById("ip").textContent = d.ip)
+      .catch(() => document.getElementById("ip").textContent = "取得失敗");
+  </script>
+</body>
+</html>
